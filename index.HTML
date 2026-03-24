@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>Birds of Papua New Guinea</title>
+	<style>
+		:root{--bg:#f7fafc;--card:#ffffff;--accent:#eb8c3e;--muted:#55606a}
+		body{font-family: system-ui,Segoe UI,Roboto,Helvetica,Arial, sans-serif;line-height:1.6;background:var(--bg);color:#000000;margin:0;padding:24px}
+		.container{max-width:1100px;margin:0 auto}
+		header{display:flex;flex-direction:column;gap:8px;margin-bottom:12px;padding:30px 24px;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;background-image:url('images/Golden Monarch (Carterornis chrysomela).jfif');background-size:cover;background-position:center;background-repeat:no-repeat;}
+		h1{margin:0;font-size:2.5rem;color:#DAA520;font-family:'Georgia',serif;}
+		.intro{color:#DAA520;text-shadow:1px 1px 2px rgba(0,0,0,0.7);}
+		.controls{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+		.search{flex:1;min-width:220px}
+		input[type="search"], input[type="text"], textarea{width:95%;padding:8px;border-radius:6px;border:1px solid rgba(16,32,40,0.08);font-size:1rem}
+		button{background:var(--accent);color:#fff;border:none;padding:10px 12px;border-radius:6px;cursor:pointer}
+		section{margin-top:14px;background:var(--card);padding:16px;border-radius:8px}
+		h2{margin-top:0;color:#3b280b}
+		ul{margin:8px 0 0 20px}
+		.species{display:grid;grid-template-columns:1fr;gap:12px}
+		.species-item{padding:12px;border-radius:8px;background:#fcfffe;border:1px solid rgba(16,32,40,0.03);position:relative}
+		.species-item img{max-width:100%;height:auto;border-radius:6px;margin-bottom:8px;}
+		.meta{font-size:0.95rem;color:var(--muted);margin-top:6px}
+		.funfact{margin-top:8px;font-style:italic;color:#DAA520;border:1px solid #DAA520;padding:8px;border-radius:4px;background:#fff;}
+		.status{display:inline-block;background:#eef6f3;color:#945420;padding:4px 8px;border-radius:999px;font-size:0.85rem;margin-left:8px}
+		.species-item[data-status="Least Concern"] .status { background: lightgreen; color: black; }
+		.species-item[data-status="Vulnerable"] .status { background: rgb(231, 192, 192); color: black; }
+		.species-item[data-status="Near Threatened"] .status { background: lightyellow; color: black; }
+		.qa-box{display:grid;grid-template-columns:1fr 320px;gap:12px;margin-top:12px}
+		.qa-list{background:#fff;padding:12px;border-radius:8px;border:1px solid rgba(16,32,40,0.04);max-height:280px;overflow:auto}
+		footer{margin-top:18px;font-size:0.9rem;color:var(--muted)}
+		@media(min-width:1000px){.species{grid-template-columns:repeat(2,1fr)}}
+		@media(max-width:700px){.qa-box{grid-template-columns:1fr}}
+	</style>
+</head>
+<body>
+	<header>
+		<h1>Birds of Papua New Guinea</h1>
+		<p class="intro">Papua New Guinea (PNG) hosts extraordinary bird diversity — over 700 species, many endemic.
+			 Below are species highlights (alphabetical) with where to find them, habitat, diet, conservation status, and a fun fact.</p>
+
+		<div class="controls">
+			<div class="search">
+				<label for="search" style="display:none">Search birds</label>
+				<input id="search" type="search" placeholder="Search by name, habitat, location, or food">
+			</div>
+			<div style="min-width:160px">
+				<label for="region" style="display:none">Region filter</label>
+				<input id="region" type="text" placeholder="Filter by region (e.g. Huon, Sepik, Highlands)">
+			</div>
+			<div>
+				<button id="clear">Clear filters</button>
+			</div>
+		</div>
+	</header>
+
+	<div class="container">
+
+		<section id="iucn-note">
+			<h2>IUCN Conservation Status (quick guide)</h2>
+		<ul>
+			<li><strong style="background-color: rgb(169, 231, 169); color: black;">Least Concern:</strong> species are widespread or abundant and face no immediate major threats.</li>
+			<li><strong style="background-color: lightyellow; color: black;">Near Threatened:</strong> species close to qualifying for a threatened category or likely to in the near future.</li>
+			<li><strong style="background-color: rgb(241, 190, 190); color: black;">Vulnerable:</strong> species facing a high risk of extinction in the wild without conservation actions.</li>
+		</ul>
+		<section id="species-details">
+			<h2>Species Groups & Brief Explanation</h2>
+			<p>PNG's bird fauna includes several important groups: birds-of-paradise (renowned for male courtship displays and sexual dimorphism), parrots and cockatoos (colorful, often noisy, important seed and pollination agents), pigeons and doves (key seed dispersers), kingfishers and raptors (predators), bowerbirds and riflebirds (interesting courtship behaviour), and many small passerines that occupy understory and canopy niches. Mountain uplift and island isolation drove speciation, producing many endemic lineages.</p>
+		</section>
+
+		<section id="species-section">
+			<h2>Species & Where to Find Them (alphabetical)</h2>
+			<div class="species" id="species-list">
+				<div class="species-item" data-name="Australasian Figbird" data-image="images/figbird.jpg" data-location="Widespread throughout PNG lowland forests, mangroves and even suburban gardens from sea level up to 1000 m" data-habitat="Prefers forest edges, parks and fruiting trees in open wooded habitats" data-food="Feeds mainly on figs and other soft fruits; will also glean insects from foliage and take nectar occasionally" data-status="Least Concern" data-features="Medium-sized passerine with olive‑green back, grey head, and a noticeable crest on males">
+					<strong>Australasian Figbird (Sphecotheres vieilloti)</strong><span class="status">Least Concern</span>
+					<a href="images/figbird_art_1_big.jpg" target="_blank"><img src="images/figbird_art_1_big.jpg" alt="Australasian Figbird" style="width: 300px; height: 300px;"></a>
+					<div class="meta">Where: Lowland forests, edges, and gardens across PNG (provinces such as Milne Bay, Central, Oro, Morobe, Madang, East Sepik, Sandaun). Habitat: canopy and edge. Diet: primarily figs and other soft fruits, supplemented by small insects, nectar, and small seeds. Origin: Native to northern and eastern Australia, southern New Guinea, and Kai Islands.</div>
+					<div class="funfact">Fun fact: They often gather in noisy fruiting trees and help disperse fig seeds.</div>
+				</div>
+
+				<div class="species-item" data-name="Black Sicklebill" data-image="images/black_sicklebill.jpg" data-location="Restricted to mossy montane forests in the central highlands, usually above 1500 m" data-habitat="Upper canopy and forest edges where fruiting trees occur" data-food="Primarily frugivorous, eating berries and figs, supplemented by insects and spiders picked off leaves" data-status="Least Concern" data-features="Striking male with glossy black plumage, long sickle‑shaped bill and a dramatically curved tail">
+					<strong>Black Sicklebill (Epimachus fastuosus)</strong><span class="status">Least Concern</span>
+					<a href="images/Black Sicklebill (Epimachus fastuosus).jpeg" target="_blank"><img src="images/Black Sicklebill (Epimachus fastuosus).jpeg" alt="Black Sicklebill" style="width: 300px; height: 300px;"></a>
+					<div class="meta">Where: Montane forests in the central highlands (provinces such as Simbu, Eastern Highlands, Western Highlands). Habitat: canopy and forest edges. Diet: primarily berries and figs, supplemented by insects and spiders picked from leaves. Origin: Endemic to New Guinea.</div>
+					<div class="funfact">Fun fact: Males have long curved tail feathers used in dramatic aerial displays.</div>
+				</div>
+
+				<div class="species-item" data-name="Blyth's Hornbill" data-image="images/blyths_hornbill.jpg" data-location="Found in mature lowland and hill forests across the mainland and larger offshore islands; avoids heavily disturbed areas" data-habitat="High canopy of primary rainforest and tall secondary growth; nests in large tree cavities" data-food="Feeds on a wide variety of fruits, figs especially, but will also take small vertebrates such as lizards, birds and rodents" data-status="Near Threatened" data-features="Powerful horned bill, pale eyes, and a white tail band contrasting black body">
+					<strong>Blyth's Hornbill (Rhyticeros plicatus)</strong><span class="status">Near Threatened</span>
+					<a href="images/Blyth's Hornbill (Rhyticeros plicatus).jpeg" target="_blank"><img src="images/Blyth's Hornbill (Rhyticeros plicatus).jpeg" alt="Blyth's Hornbill" style="width: 300px; height: 300px;"></a>
+					<div class="meta">Where: Widespread in lowland and hill forests, including many islands (provinces such as Central, Milne Bay, Oro, Morobe, Madang, East Sepik, West New Britain, East New Britain, New Ireland). Habitat: canopy and large trees. Diet: mainly fruit; occasional small vertebrates. Origin: Native to Southeast Asia and New Guinea.</div>
+					<div class="funfact">Fun fact: Hornbills are important seed dispersers and often nest in tree hollows.</div>
+				</div>
+
+				<div class="species-item" data-name="Blue-eyed Cockatoo" data-location="Confined to the northern coastal lowlands of PNG, often near riverine forest and mangroves" data-habitat="Canopy of old-growth and secondary forest, also in coastal woodland and plantations" data-food="Cracks open hard nuts and seeds with powerful beak; also consumes fruit, berries and blossoms" data-status="Vulnerable" data-features="Large white cockatoo with a bare blue eye-ring and slender crest">
+					<strong>Blue-eyed Cockatoo (Cacatua ophthalmica)</strong><span class="status">Vulnerable</span>
+					<a href="images/Blue-eyed Cockatoo (Cacatua ophthalmica).jpg" target="_blank"><img src="images/Blue-eyed Cockatoo (Cacatua ophthalmica).jpg" alt="Blue-eyed Cockatoo" style="width: 300px; height: 300px;"></a>
+					<div class="meta">Where: Lowland and hill forests of northern PNG (provinces such as Madang, East Sepik, Sandaun). Habitat: canopy. Diet: cracks open hard nuts and seeds with powerful beak; also consumes fruit, berries, and blossoms. Origin: Endemic to New Guinea.</div>
+					<div class="funfact">Fun fact: Named for its pale blue eye-ring — a distinctive field mark.</div>
+				</div>
+
+				<div class="species-item" data-name="Brown Cuckoo-Dove" data-location="Common in lowland rainforests, secondary growth and even cocoa and oil‑palm plantations" data-habitat="Upper canopy where fruiting Ficus and other trees are abundant" data-food="Almost exclusively frugivorous, swallowing small berries and figs whole" data-status="Least Concern" data-features="Slender, long-tailed dove with warm brown coloration and a soft cooing voice">
+					<strong>Brown Cuckoo-Dove (Macropygia amboinensis)</strong><span class="status">Least Concern</span>
+					<a href="images/Brown Cuckoo-Dove.jpg" target="_blank"><img src="images/Brown Cuckoo-Dove.jpg" alt="Brown Cuckoo-Dove" style="width: 300px; height: 300px;"></a>
+					<div class="meta">Where: Lowland and secondary forests (provinces such as Central, Milne Bay, Oro, Morobe, Madang). Habitat: canopy. Diet: almost exclusively frugivorous, swallowing small berries and figs whole. Origin: Native to Southeast Asia and New Guinea.</div>
+					<div class="funfact">Fun fact: Often found in pairs or small groups, quietly feeding on fig trees.</div>
+				</div>
+
+				<div class="species-item" data-name="Carola's Parotia" data-location="Mid-montane forests (central ranges)" data-habitat="Montane understory and clearings" data-food="Fruits, arthropods" data-status="Near Threatened">
+					<strong>Carola's Parotia (Parotia carolae)</strong><span class="status">Near Threatened</span>
+					<a href="images/Carola's Parotia (Parotia carolae).jpg" target="_blank"><img src="images/Carola's Parotia (Parotia carolae).jpg" alt="Carola's Parotia" style="width: 300px; height: 300px;"></a>
+					<div class="meta">Where: Mid-montane forests of central ranges (provinces such as Eastern Highlands, Simbu). Habitat: understory and display grounds. Diet: fruits and arthropods. Origin: Endemic to New Guinea.</div>
+					<div class="funfact">Fun fact: Males perform a ballet-like courtship with shiny breast feathers that flare to catch light.</div>
+				</div>
+
+<div class="species-item" data-name="Eclectus Parrot" data-location="Common along coastal lowlands and small islands; often seen in gardens and near villages where banana and papaya trees grow" data-habitat="Upper canopy of rainforest, mangroves, and disturbed areas; frequents forest edges and clearings" data-food="Feeds on fruit, flower buds, nectar and seeds; known to chew on coconuts" data-status="Least Concern" data-features="Sexually dimorphic: males bright green, females red and purple with blue cheeks">
+					<strong>Eclectus Parrot (Eclectus roratus)</strong><span class="status">Least Concern</span>
+					<a href="images/Eclectus Parrot (Eclectus roratus).jpg" target="_blank"><img src="images/Eclectus Parrot (Eclectus roratus).jpg" alt="Eclectus Parrot" style="width: 300px; height: 300px;"></a>
+					<div class="meta">Where: Coastal lowlands, gardens and disturbed areas (provinces such as Central, Milne Bay, Oro, Morobe, Madang, East Sepik). Habitat: canopy and forest edges. Diet: feeds on fruit, flower buds, nectar, and seeds; known to chew on coconuts. Origin: Endemic to New Guinea and surrounding islands.</div>
+					<div class="funfact">Fun fact: Sexually dimorphic — males are green and females are red with blue cheeks.</div>
+				</div>
+
+<div class="species-item" data-name="Emperor Bird-of-Paradise" data-location="Restricted to hill and lower montane forests of the Owen Stanley Range and nearby eastern mountains" data-habitat="Mid‑canopy and upper understory of dense mossy forests and treefall gaps" data-food="Frugivorous diet of figs and palm fruit; also picks insects from leaves" data-status="Near Threatened" data-features="Large bird-of-paradise with long flank plumes and black-and-white tail streamers"> 
+					<strong>Emperor Bird-of-Paradise (Paradisaea guilielmi)</strong><span class="status">Near Threatened</span>
+					<a href="images/Emperor Bird-of-Paradise (Paradisaea guilielmi).jpg" target="_blank"><img src="images/Emperor Bird-of-Paradise (Paradisaea guilielmi).jpg" alt="Emperor Bird-of-Paradise" style="width: 300px; height: 300px;"></a>
+					<div class="meta">Where: Hill and lower montane forests in parts of PNG (provinces such as Central, Oro). Habitat: canopy and mid-levels. Diet: frugivorous diet of figs and palm fruit; also picks insects from leaves. Origin: Endemic to New Guinea.</div>
+					<div class="funfact">Fun fact: Males have long flank plumes used in display, making them very showy.</div>
+				</div>
+
+<div class="species-item" data-name="Golden Monarch" data-location="Occurs in lowland rainforests and adjacent secondary growth throughout PNG; sometimes moves into foothill forests" data-habitat="Upper canopy and forest edges; frequently perched motionless on sunlit branches" data-food="Specializes on airborne insects which it sallies to catch; also gleans from leaves" data-status="Least Concern" data-features="Small passerine with vivid yellow body and black wings and tail"> 
+					<strong>Golden Monarch (Carterornis chrysomela)</strong><span class="status">Least Concern</span>
+					<a href="images/Golden Monarch (Carterornis chrysomela).jfif" target="_blank"><img src="images/Golden Monarch (Carterornis chrysomela).jfif" alt="Golden Monarch" style="width: 300px; height: 300px;"></a>
+					<div class="meta">Where: Lowland rainforests and secondary growth (provinces such as Central, Milne Bay, Oro, Morobe, Madang). Habitat: canopy and forest edges. Diet: specializes on airborne insects which it sallies to catch; also gleans from leaves. Origin: Native to New Guinea and Australia.</div>
+					<div class="funfact">Fun fact: Small vivid yellow bird with black wings and tail, often seen on exposed sunlit branches sallying for insects.</div>
+				</div>
+
+<div class="species-item" data-name="Greater Bird-of-Paradise" data-location="Found in lowland rainforests of southern PNG from the Fly River eastward; numbers decline near human settlement" data-habitat="High canopy of undisturbed forest; males display on exposed branches and lianas" data-food="Feeds mainly on figs and other fruits, supplements with insects and small vertebrates" data-status="Near Threatened" data-features="Males have flowing flank plumes and reddish tail, females more subdued"> 
+					<strong>Greater Bird-of-Paradise (Paradisaea apoda)</strong><span class="status">Near Threatened</span>
+					<a href="images/Greater Bird-of-Paradise (Paradisaea apoda).jpg" target="_blank"><img src="images/Greater Bird-of-Paradise (Paradisaea apoda).jpg" alt="Greater Bird-of-Paradise" style="width: 300px; height: 300px;"></a>
+					<div class="meta">Where: Lowland and hill rainforests, southern PNG (provinces such as Gulf, Western, Central). Habitat: canopy and display perches. Diet: feeds mainly on figs and other fruits, supplements with insects and small vertebrates. Origin: Endemic to New Guinea.</div>
+					<div class="funfact">Fun fact: Historically prized for their long flank plumes used in ceremonial dress.</div>
+				</div>
+
+<div class="species-item" data-name="Hooded Pitohui" data-location="Widespread in lowland and hill forests across PNG; often heard before seen" data-habitat="Dense understory and mid-canopy of primary and secondary forest" data-food="Omnivorous, eating insects, small vertebrates and figs" data-status="Least Concern" data-features="Toxic skin and feathers containing batrachotoxin; black hood contrasts with orange body">
+					<strong>Hooded Pitohui</strong><span class="status">Least Concern</span>
+					<a href="images/Hooded Pitohui.jpg" target="_blank"><img src="images/Hooded Pitohui.jpg" alt="Hooded Pitohui" style="width: 300px; height: 300px;"></a>
+					<div class="funfact">Fun fact: Contains batrachotoxin in its skin and feathers — a rare toxic bird.</div>
+				</div>
+
+				<div class="species-item" data-name="Hooded Pitta" data-location="Lowland forest floor and leaf litter" data-habitat="Forest floor, dense undergrowth" data-food="Invertebrates" data-status="Near Threatened">
+					<strong>Hooded Pitta (Pitta sordida)</strong><span class="status">Near Threatened</span>
+					<a href="images/Hooded Pitta (Pitta sordida).jpg" target="_blank"><img src="images/Hooded Pitta (Pitta sordida).jpg" alt="Hooded Pitta" style="width: 300px; height: 300px;"></a>
+					<div class="meta">Where: Dense lowland forest and leaf litter (provinces such as Central, Milne Bay, Oro, Morobe). Habitat: forest floor. Diet: omvertebrates. Origin: Native to Southeast Asia and New Guineall vertebrates, and figs. Origin: Endemic to New Guinea.</div>
+					<div class="funfact">Fun fact: Known for its vivid green body and black-and-red head colouring.</div>
+				</div>
+
+				<div class="species-item" data-name="King of Saxony Bird-of-Paradise" data-location="Montane and hill forests (central ranges)" data-habitat="Mid-canopy and forest interior" data-food="Fruits, small invertebrates" data-status="Near Threatened">
+					<strong>King of Saxony Bird-of-Paradise (Pteridophora alberti)</strong><span class="status">Near Threatened</span>
+					<a href="images/King of Saxony Bird-of-Paradise King of Saxony Bird-of-Paradise (Pteridophora alberti).jpg" target="_blank"><img src="images/King of Saxony Bird-of-Paradise King of Saxony Bird-of-Paradise (Pteridophora alberti).jpg" alt="King of Saxony Bird-of-Paradise" style="width: 300px; height: 300px;"></a>
+					<div class="meta">Where: Hill and montane forests of central ranges (provinces such as Eastern Highlands, Simbu). Habitat: mid-canopy. Diet: fruits and small invertebrates. Origin: Endemic to New Guinea.</div>
+					<div class="funfact">Fun fact: Males have two extraordinary head wires tipped with flags used in display.</div>
+				</div>
+
+				<div class="species-item" data-name="Lesser Bird-of-Paradise" data-location="Hill and lower montane forests" data-habitat="Canopy and edge" data-food="Fruits, arthropods" data-status="Least Concern">
+					<strong>Lesser Bird-of-Paradise (Paradisaea minor)</strong><span class="status">Least Concern</span>
+					<a href="images/Lesser Bird-of-Paradise (Paradisaea minor).jpg" target="_blank"><img src="images/Lesser Bird-of-Paradise (Paradisaea minor).jpg" alt="Lesser Bird-of-Paradise" style="width: 300px; height: 300px;"></a>
+					<div class="meta">Where: Hill and lower montane forests (provinces such as Eastern Highlands, Simbu, Western Highlands). Habitat: canopy. Diet: fruit and arthropods. Origin: Endemic to New Guinea.</div>
+					<div class="funfact">Fun fact: Males perform elaborate dances on display perches to attract females.</div>
+				</div>
+
+				<div class="species-item" data-name="Magnificent Riflebird" data-location="Lowland and hill rainforests" data-habitat="Understory and mid-canopy" data-food="Insects and small frogs" data-status="Least Concern">
+					<strong>Magnificent Riflebird (Ptiloris magnificus)</strong><span class="status">Least Concern</span>
+					<a href="images/Magnificent Riflebird Magnificent Riflebird (Ptiloris magnificus).jpg" target="_blank"><img src="images/Magnificent Riflebird Magnificent Riflebird (Ptiloris magnificus).jpg" alt="Magnificent Riflebird" style="width: 300px; height: 300px;"></a>
+					<div class="meta">Where: Lowland and hill rainforests (provinces such as Central, Milne Bay, Oro, Morobe, Madang). Habitat: understory and mid-canopy. Diet: insects and small frogs. Origin: Endemic to New Guinea.</div>
+					<div class="funfact">Fun fact: Males display with a unique wing-flicking motion and shiny plumage flash.</div>
+				</div>
+
+				<div class="species-item" data-name="New Guinea Friarbird" data-location="Lowland and secondary forests" data-habitat="Canopy and edge" data-food="Nectar, fruit, insects" data-status="Least Concern">
+					<strong>New Guinea Friarbird (Philemon novaeguineae)</strong><span class="status">Least Concern</span>
+					<a href="images/New Guinea Friarbird (Philemon novaeguineae).jpg" target="_blank"><img src="images/New Guinea Friarbird (Philemon novaeguineae).jpg" alt="New Guinea Friarbird" style="width: 300px; height: 300px;"></a>
+					<div class="meta">Where: Widespread in lowlands and disturbed areas (provinces such as Central, Milne Bay, Oro, Morobe, Madang, East Sepik). Habitat: canopy and edges. Diet: nectar, fruit and insects. Origin: Endemic to New Guinea.</div>
+					<div class="funfact">Fun fact: Friarbirds have a bare patch of skin on the face and a loud, raucous call.</div>
+				</div>
+
+				<div class="species-item" data-name="New Guinea Kingfisher" data-location="Riversides, mangroves, coastal forests" data-habitat="Riparian and coastal zones" data-food="Fish, crustaceans, insects" data-status="Least Concern">
+					<strong>New Guinea Kingfisher (various species)</strong><span class="status">Least Concern</span>
+					<a href="images/New Guinea Kingfisher.jpg" target="_blank"><img src="images/New Guinea Kingfisher.jpg" alt="New Guinea Kingfisher" style="width: 300px; height: 300px;"></a>
+					<div class="meta">Where: Rivers, mangroves and coastal forests (provinces such as Central, Milne Bay, Oro, Morobe, Madang, East Sepik, Sandaun). Habitat: riparian zones. Diet: fish, crustaceans and insects. Origin: Native to New Guinea and surrounding islands.</div>
+					<div class="funfact">Fun fact: Many kingfishers in PNG have bright colours and are easier to spot than one might expect.</div>
+				</div>
+
+				<div class="species-item" data-name="Palm Cockatoo" data-location="Lowland and hill forests, coastal areas" data-habitat="Canopy" data-food="Nuts, seeds, fruit" data-status="Near Threatened">
+					<strong>Palm Cockatoo (Probosciger aterrimus)</strong><span class="status">Near Threatened</span>
+					<a href="images/Palm Cockatoo (Probosciger aterrimus).jpg" target="_blank"><img src="images/Palm Cockatoo (Probosciger aterrimus).jpg" alt="Palm Cockatoo" style="width: 300px; height: 300px;"></a>
+					<div class="meta">Where: Lowland and hill forests, often near coasts (provinces such as Central, Milne Bay, Oro, Morobe, Madang, East Sepik, Sandaun). Habitat: canopy. Diet: nuts, seeds and fruit. Origin: Endemic to New Guinea and surrounding islands.</div>
+					<div class="funfact">Fun fact: Males use sticks to drum on hollow trees during courtship displays.</div>
+				</div>
+
+				<div class="species-item" data-name="Paradise-crow" data-location="Lowland forest (some islands)" data-habitat="Canopy and mid-levels" data-food="Fruits, insects" data-status="Least Concern">
+					<strong>Paradise-crow (Lycocorax pyrrhopterus)</strong><span class="status">Least Concern</span>
+					<a href="images/Paradise-crow (Lycocorax pyrrhopterus).jpg" target="_blank"><img src="images/Paradise-crow (Lycocorax pyrrhopterus).jpg" alt="Paradise-crow" style="width: 300px; height: 300px;"></a>
+					<div class="meta">Where: Lowland forests on some islands and parts of PNG (provinces such as Manus, New Ireland). Habitat: canopy. Diet: fruit and insects. Origin: Endemic to Bismarck Archipelago and New Guinea.</div>
+					<div class="funfact">Fun fact: Despite its name, it's more crow-like and lacks the flamboyance of birds-of-paradise.</div>
+				</div>
+
+				<div class="species-item" data-name="Pheasant Pigeon" data-location="Lower-montane and lowland forest floor" data-habitat="Forest floor" data-food="Seeds, fruit, invertebrates" data-status="Near Threatened">
+					<strong>Pheasant Pigeon (Otidiphaps nobilis)</strong><span class="status">Near Threatened</span>
+					<a href="images/Pheasant Pigeon (Otidiphaps nobilis).jpg" target="_blank"><img src="images/Pheasant Pigeon (Otidiphaps nobilis).jpg" alt="Pheasant Pigeon" style="width: 300px; height: 300px;"></a>
+					<div class="meta">Where: Forest floor in lowland and lower montane forests (provinces such as Central, Milne Bay, Oro, Morobe, Madang). Habitat: leaf litter and understorey. Diet: seeds, fruit, and invertebrates. Origin: Endemic to New Guinea.</div>
+					<div class="funfact">Fun fact: These ground-dwelling pigeons are shy and often only revealed by their deep calls.</div>
+				</div>
+
+				<div class="species-item" data-name="Raggiana Bird-of-Paradise" data-location="Lowland rainforests (southeastern PNG)" data-habitat="Canopy and forest edges" data-food="Fruits, arthropods" data-status="Least Concern">
+					<strong>Raggiana Bird-of-Paradise (Paradisaea raggiana)</strong><span class="status">Least Concern</span>
+					<a href="images/Raggiana Bird-of-Paradise (Paradisaea raggiana).jpg" target="_blank"><img src="images/Raggiana Bird-of-Paradise (Paradisaea raggiana).jpg" alt="Raggiana Bird-of-Paradise" style="width: 300px; height: 300px;"></a>
+					<div class="meta">Where: Lowland rainforests — particularly southeastern PNG (provinces such as Milne Bay, Central, Oro). Habitat: canopy and forest edges. Diet: fruits and arthropods. Origin: Endemic to New Guinea.</div>
+					<div class="funfact">Fun fact: The national bird of Papua New Guinea — its plumes are used in cultural dress.</div>
+				</div>
+
+				<div class="species-item" data-name="Rainbow Lorikeet" data-location="Coastal forests, gardens, forest edge" data-habitat="Canopy and flowering trees" data-food="Nectar, fruit" data-status="Least Concern">
+					<strong>Rainbow Lorikeet (Trichoglossus moluccanus)</strong><span class="status">Least Concern</span>
+					<a href="images/Rainbow Lorikeet (Trichoglossus moluccanus).jpg" target="_blank"><img src="images/Rainbow Lorikeet (Trichoglossus moluccanus).jpg" alt="Rainbow Lorikeet" style="width: 300px; height: 300px;"></a>
+					<div class="meta">Where: Coastal forests, gardens and floral-rich areas (provinces such as Milne Bay, Central, Oro, Morobe, Madang). Habitat: canopy and flowering trees. Diet: nectar and soft fruits. Origin: Native to Australia, New Guinea, and surrounding islands.</div>
+					<div class="funfact">Fun fact: Lorikeets have brush-tipped tongues adapted to feed on nectar.</div>
+				</div>
+
+				<div class="species-item" data-name="Regent Bowerbird" data-location="Rainforest and adjacent habitats" data-habitat="Canopy and display courts" data-food="Fruits, insects" data-status="Least Concern">
+					<strong>Regent Bowerbird (Sericulus chrysocephalus)</strong><span class="status">Least Concern</span>
+					<a href="images/Regent Bowerbird (Sericulus chrysocephalus).jpg" target="_blank"><img src="images/Regent Bowerbird (Sericulus chrysocephalus).jpg" alt="Regent Bowerbird" style="width: 300px; height: 300px;"></a>
+					<div class="meta">Where: Rainforest and adjacent habitats (provinces such as Central, Milne Bay, Oro, Morobe, Madang). Habitat: canopy and display courts. Diet: fruit and insects. Origin: Endemic to New Guinea.</div>
+					<div class="funfact">Fun fact: Males build decorated bowers to attract females.</div>
+				</div>
+
+				<div class="species-item" data-name="Southern Cassowary" data-location="Lowland rainforests, coastal forests" data-habitat="Forest floor" data-food="Large fruits, small animals" data-status="Vulnerable">
+					<strong>Southern Cassowary (Casuarius casuarius)</strong><span class="status">Vulnerable</span>
+					<a href="images/Southern Cassowary (Casuarius casuarius).jpg" target="_blank"><img src="images/Southern Cassowary (Casuarius casuarius).jpg" alt="Southern Cassowary" style="width: 300px; height: 300px;"></a>
+					<div class="meta">Where: Lowland rainforests and swampy coastal forests (provinces such as Central, Gulf, Western, Milne Bay). Habitat: forest floor. Diet: large fruits and small animals. Origin: Native to New Guinea and northeastern Australia.</div>
+					<div class="funfact">Fun fact: Cassowaries are one of the few birds that disperse very large seeds whole.</div>
+				</div>
+
+				<div class="species-item" data-name="Spangled Drongo" data-location="Forest edges and clearings" data-habitat="Canopy" data-food="Insects" data-status="Least Concern">
+					<strong>Spangled Drongo (Dicrurus bracteatus)</strong><span class="status">Least Concern</span>
+					<a href="images/Spangled Drongo (Dicrurus bracteatus).jpg" target="_blank"><img src="images/Spangled Drongo (Dicrurus bracteatus).jpg" alt="Spangled Drongo" style="width: 300px; height: 300px;"></a>
+					<div class="meta">Where: Forest edges and clearings (provinces such as Central, Milne Bay, Oro, Morobe, Madang). Habitat: canopy. Diet: aerial insects. Origin: Native to Southeast Asia, New Guinea, and Australia.</div>
+					<div class="funfact">Fun fact: Drongos are acrobatic fliers and often mimic calls to distract other birds.</div>
+				</div>
+
+				<div class="species-item" data-name="Superb Bird-of-Paradise" data-location="Lowland forests" data-habitat="Understory and lower canopy" data-food="Insects, fruit" data-status="Least Concern">
+					<strong>Superb Bird-of-Paradise (Lophorina superba)</strong><span class="status">Least Concern</span>
+					<a href="images/Superb Bird-of-Paradise (Lophorina superba).jpg" target="_blank"><img src="images/Superb Bird-of-Paradise (Lophorina superba).jpg" alt="Superb Bird-of-Paradise" style="width: 300px; height: 300px;"></a>
+					<div class="meta">Where: Lowland rainforests and forest edges (provinces such as Central, Milne Bay, Oro, Morobe). Habitat: understory. Diet: insects and fruit. Origin: Endemic to New Guinea.</div>
+					<div class="funfact">Fun fact: Males transform their appearance during display to a jet-black oval with shimmering blue-green breast shield.</div>
+				</div>
+
+				<div class="species-item" data-name="Twelve-wired Bird-of-Paradise" data-location="Lowland and hill rainforests" data-habitat="Canopy and vine tangles" data-food="Fruit and arthropods" data-status="Near Threatened">
+					<strong>Twelve-wired Bird-of-Paradise (Seleucidis melanoleucus)</strong><span class="status">Near Threatened</span>
+					<a href="images/Twelve-wired Bird-of-Paradise.jpg" target="_blank"><img src="images/Twelve-wired Bird-of-Paradise.jpg" alt="Twelve-wired Bird-of-Paradise" style="width: 300px; height: 300px;"></a>
+					<div class="meta">Where: Lowland and hill rainforests (provinces such as Central, Milne Bay, Oro, Morobe, Madang). Habitat: vine tangles and canopy. Diet: fruit and insects. Origin: Endemic to New Guinea.</div>
+					<div class="funfact">Fun fact: Male has twelve wire-like flank feathers used to display to females.</div>
+				</div>
+
+				<div class="species-item" data-name="Victoria Crowned Pigeon" data-location="Lowland forests (specific islands and regions)" data-habitat="Canopy and forest floor" data-food="Fruit, seeds" data-status="Vulnerable">
+					<strong>Victoria Crowned Pigeon (Goura victoria)</strong><span class="status">Vulnerable</span>
+					<a href="images/Victoria Crowned Pigeon (Goura victoria).jpg" target="_blank"><img src="images/Victoria Crowned Pigeon (Goura victoria).jpg" alt="Victoria Crowned Pigeon" style="width: 300px; height: 300px;"></a>
+					<div class="meta">Where: Lowland forests and swampy areas in parts of PNG (provinces such as Sandaun, East Sepik, Madang). Habitat: canopy and forest floor. Diet: fruit and seeds. Origin: Endemic to New Guinea.</div>
+					<div class="funfact">Fun fact: One of the largest pigeons, with an ornate lacy crest.</div>
+				</div>
+
+				<div class="species-item" data-name="Wahnes' Parotia" data-location="Mid-montane forests (known ranges)" data-habitat="Montane understory" data-food="Fruit, arthropods" data-status="Vulnerable">
+					<strong>Wahnes' Parotia (Parotia wahnesi)</strong><span class="status">Vulnerable</span>
+					<a href="images/Wahnes' Parotia (Parotia wahnesi),jpg.jpg" target="_blank"><img src="images/Wahnes' Parotia (Parotia wahnesi),jpg.jpg" alt="Wahnes' Parotia" style="width: 300px; height: 300px;"></a>
+					<div class="meta">Where: Mid-montane uplands (provinces such as Eastern Highlands, Simbu). Habitat: understory display arenas. Diet: fruit and arthropods. Origin: Endemic to New Guinea.</div>
+					<div class="funfact">Fun fact: Spectacular male displays include wheeling dances with iridescent flank plating.</div>
+				</div>
+
+				<div class="species-item" data-name="White-bibbed Fruit Dove" data-location="Lowland and hill forests" data-habitat="Canopy" data-food="Fruits" data-status="Least Concern">
+					<strong>White-bibbed Fruit Dove (Ptilinopus rivoli)</strong><span class="status">Least Concern</span>
+					<a href="images/White-bibbed Fruit Dove (Ptilinopus rivoli).jpg" target="_blank"><img src="images/White-bibbed Fruit Dove (Ptilinopus rivoli).jpg" alt="White-bibbed Fruit Dove" style="width: 300px; height: 300px;"></a>
+					<div class="meta">Where: Lowland and hill forests (provinces such as Central, Milne Bay, Oro, Morobe, Madang). Habitat: canopy. Diet: fruit—especially figs. Origin: Native to New Guinea and surrounding islands.</div>
+					<div class="funfact">Fun fact: Often remains high in the canopy and is more often heard than seen.</div>
+				</div>
+
+				<div class="species-item" data-name="Wompoo Fruit Dove" data-location="Lowland and hill rainforests" data-habitat="Canopy" data-food="Large fruits" data-status="Least Concern">
+					<strong>Wompoo Fruit Dove (Ptilinopus magnificus)</strong><span class="status">Least Concern</span>
+					<a href="images/Wompoo Fruit Dove (Ptilinopus magnificus).jpg" target="_blank"><img src="images/Wompoo Fruit Dove (Ptilinopus magnificus).jpg" alt="Wompoo Fruit Dove" style="width: 300px; height: 300px;"></a>
+					<div class="meta">Where: Lowland and hill rainforests (provinces such as Central, Milne Bay, Oro, Morobe, Madang). Habitat: canopy. Diet: large fruits. Origin: Endemic to New Guinea.</div>
+					<div class="funfact">Fun fact: Named 'Wompoo' for its low, mournful call.</div>
+				</div>
+
+				<div class="species-item" data-name="Yellow-billed Kingfisher" data-location="Lowland and coastal forests" data-habitat="Riparian and woodland" data-food="Fish, insects" data-status="Least Concern">
+					<strong>Yellow-billed Kingfisher (Syma torotoro)</strong><span class="status">Least Concern</span>
+					<a href="images/Yellow-billed Kingfisher (Syma torotoro).jpg" target="_blank"><img src="images/Yellow-billed Kingfisher (Syma torotoro).jpg" alt="Yellow-billed Kingfisher" style="width: 300px; height: 300px;"></a>
+					<div class="meta">Where: Lowland and coastal forests (provinces such as Central, Milne Bay, Oro, Morobe, Madang). Habitat: riparian and woodland edges. Diet: fish, insects and small prey. Origin: Native to New Guinea and surrounding islands.</div>
+					<div class="funfact">Fun fact: Its bright bill contrasts strongly with its plumage, making it distinctive.</div>
+				</div>
+
+				<div class="species-item" data-name="Yellow-faced Myna" data-location="Villages, gardens, and forest edges" data-habitat="Open woodland and human-altered habitat" data-food="Omnivore: fruits, insects" data-status="Least Concern">
+					<strong>Yellow-faced Myna (Mino dumontii)</strong><span class="status">Least Concern</span>
+					<a href="images/Yellow-faced Myna (Mino dumontii).jpg" target="_blank"><img src="images/Yellow-faced Myna (Mino dumontii).jpg" alt="Yellow-faced Myna" style="width: 300px; height: 300px;"></a>
+					<div class="meta">Where: Villages, gardens and forest edges (provinces such as Central, Milne Bay, Oro, Morobe, Madang). Habitat: open woodland and human-altered areas. Diet: omnivore: fruits and insects. Origin: Endemic to New Guinea.</div>
+					<div class="funfact">Fun fact: Mynas are social and often mimic other birds and human sounds.</div>
+				</div>
+
+				<div class="species-item" data-name="Variable Goshawk" data-location="Forest edges, plantations and open woodland" data-habitat="Open forest and edges" data-food="Small mammals, birds, reptiles" data-status="Least Concern">
+					<strong>Variable Goshawk (Accipiter hiogaster)</strong><span class="status">Least Concern</span>
+					<a href="images/Variable Goshawk (Accipiter hiogaster).jpg" target="_blank"><img src="images/Variable Goshawk (Accipiter hiogaster).jpg" alt="Variable Goshawk" style="width: 300px; height: 300px;"></a>
+					<div class="meta">Where: Forest edges, plantations and open woodland (provinces such as Central, Milne Bay, Oro, Morobe, Madang). Habitat: edge habitats. Diet: small mammals, birds, and reptiles. Origin: Native to Southeast Asia and New Guinea.</div>
+					<div class="funfact">Fun fact: A versatile raptor that adapts to a wide range of habitats including human-altered landscapes.</div>
+				</div>
+
+				<div class="species-item" data-name="Papuan Frogmouth" data-location="Lowland forest and secondary growth" data-habitat="Canopy and understory" data-food="Insects" data-status="Least Concern">
+					<strong>Papuan Frogmouth (Podargus papuensis)</strong><span class="status">Least Concern</span>
+					<a href="images/Papuan Frogmouth (Podargus papuensis).jpg" target="_blank"><img src="images/Papuan Frogmouth (Podargus papuensis).jpg" alt="Papuan Frogmouth" style="width: 300px; height: 300px;"></a>
+					<div class="meta">Where: Lowland forests and secondary growth (provinces such as Central, Milne Bay, Oro, Morobe, Madang). Habitat: understory and perches. Diet: insects. Origin: Endemic to New Guinea.</div>
+					<div class="funfact">Fun fact: Excellent camouflage — they sit motionless on branches resembling broken stumps.</div>
+				</div>
+
+				<div class="species-item" data-name="Banded Kingfisher" data-location="Lowland forest interiors" data-habitat="Canopy and mid-levels" data-food="Insects, small vertebrates" data-status="Near Threatened">
+					<strong>Banded Kingfisher (Lacedo pulchella)</strong><span class="status">Near Threatened</span>
+					<a href="images/Banded Kingfisher (Lacedo pulchella).jpg" target="_blank"><img src="images/Banded Kingfisher (Lacedo pulchella).jpg" alt="Banded Kingfisher" style="width: 300px; height: 300px;"></a>
+					<div class="meta">Where: Interior lowland forests (provinces such as Central, Gulf, Western). Habitat: mid-levels of forest. Diet: insects and small vertebrates. Origin: Native to Southeast Asia and New Guinea.</div>
+					<div class="funfact">Fun fact: Distinctive banded plumage and a loud, ringing call make it noticeable despite shy habits.</div>
+				</div>
+			</div>
+		</section>
+
+		<section id="qa-section">
+			<h2>Ask a Question</h2>
+			<div class="qa-box">
+				<div>
+					<label for="question">Your question</label>
+					<textarea id="question" rows="3" placeholder="Ask about species, where to find them, habitat, or conservation"></textarea>
+					<div style="display:flex;gap:8px;margin-top:8px">
+						<button id="ask">Ask</button>
+						<button id="clear-qa" type="button">Clear</button>
+					</div>
+				</div>
+				<div class="qa-list" id="qa-list" aria-live="polite">
+					<strong>Responses</strong>
+					<div id="responses" style="margin-top:8px"></div>
+				</div>
+			</div>
+		</section>
+
+		<footer>
+			<p>Conservation note: habitat loss, hunting, and invasive species threaten some PNG birds. Supporting community-led conservation and protected areas helps preserve this unique avifauna.</p>
+		</footer>
+	</div>
+
+	<script>
+		// Search and filter functionality
+		const searchEl = document.getElementById('search');
+		const regionEl = document.getElementById('region');
+		const clearBtn = document.getElementById('clear');
+		let speciesList = Array.from(document.querySelectorAll('.species-item'));
+
+		function filterSpecies(){
+			const q = (searchEl.value || '').toLowerCase().trim();
+			const r = (regionEl.value || '').toLowerCase().trim();
+			speciesList.forEach(card => {
+				const text = [card.dataset.name, card.dataset.habitat, card.dataset.location, card.dataset.food].join(' ').toLowerCase();
+				const matchesQuery = q === '' || text.includes(q);
+				const matchesRegion = r === '' || card.dataset.location.toLowerCase().includes(r) || card.dataset.name.toLowerCase().includes(r);
+				card.style.display = (matchesQuery && matchesRegion) ? '' : 'none';
+			});
+		}
+
+		searchEl.addEventListener('input', filterSpecies);
+		regionEl.addEventListener('input', filterSpecies);
+		clearBtn.addEventListener('click', ()=>{searchEl.value='';regionEl.value='';filterSpecies();searchEl.focus();});
+
+		// Simple Q&A responder (client-side)
+		const askBtn = document.getElementById('ask');
+		const clearQaBtn = document.getElementById('clear-qa');
+		const questionEl = document.getElementById('question');
+		const responsesEl = document.getElementById('responses');
+
+		const faq = [
+			{q:['birds-of-paradise','paradise','display','courtship'], a:'Birds-of-paradise are famous for male display plumage and complex courtship. Look for them in lowland and hill forests where males display in clearings or canopy perches.'},
+			{q:['cassowary'], a:'The Southern Cassowary is a large, ground-dwelling bird found in lowland rainforests and swampy coastal areas; it disperses large seeds and should be observed from a safe distance.'},
+			{q:['eclectus','parrot'], a:'Eclectus parrots favor forest edges, clearings and coastal islands. Males are bright green and females mostly red and purple.'},
+			{q:['where','find','location','where to find'], a:'Try searching by region using the region box (e.g., "Huon", "Highlands", "Sepik"). Many birds are specific to lowland rainforest, montane forest, or coastal mangroves.'},
+			{q:['food','eat','diet','fruit','insect'], a:'Diet varies: many species are frugivores (fruit-eaters), others eat insects, nectar, or small vertebrates. Cassowaries eat large fruits; kingfishers take fish.'},
+			{q:['conservation','threat','protect'], a:'Threats include habitat loss and hunting. Supporting protected areas and community conservation helps; consult local conservation groups for ways to help.'}
+		];
+
+		function answerQuestion(text){
+			const t = (text || '').toLowerCase();
+			if(!t) return 'Please enter a question about birds, habitat, or locations.';
+			for(const item of faq){
+				if(item.q.some(k=>t.includes(k))) return item.a;
+			}
+			// fallback: try to match a species name in dataset
+			for(const card of speciesList){
+				if(t.includes(card.dataset.name.toLowerCase()) || t.includes(card.dataset.name.split(' ')[0].toLowerCase())){
+					return `${card.dataset.name}: ${card.dataset.location}. Habitat: ${card.dataset.habitat}. Diet: ${card.dataset.food}. Status: ${card.dataset.status || 'Unknown'}`;
+				}
+			}
+			return 'I don\'t have a direct answer for that. Try asking about a species name, habitat, diet, or location (e.g., "Where can I find Raggiana Bird-of-Paradise?").';
+		}
+
+		askBtn.addEventListener('click', ()=>{
+			const q = questionEl.value.trim();
+			const r = answerQuestion(q);
+			const el = document.createElement('div');
+			el.style.padding='8px 0';
+			el.style.whiteSpace='pre-wrap';
+			el.textContent = `Q: ${q}\nA: ${r}`;
+			responsesEl.prepend(el);
+			questionEl.value='';
+			questionEl.focus();
+		});
+
+		clearQaBtn.addEventListener('click', ()=>{responsesEl.innerHTML='';});
+
+		// rebuild metadata as a bullet list from data attributes (includes optional features)
+		document.querySelectorAll('.species-item').forEach(card=>{
+			// always insert an image; use provided URL or fallback to a placeholder with the name
+			const img = document.createElement('img');
+			if(card.dataset.image && card.dataset.image.trim() !== ''){
+				img.src = card.dataset.image;
+			} else {
+				// placeholder service showing bird name
+				img.src = `https://via.placeholder.com/320x180?text=${encodeURIComponent(card.dataset.name)}`;
+			}
+			img.alt = card.dataset.name;
+			card.insertBefore(img, card.firstChild);
+			const meta = card.querySelector('.meta');
+			if(!meta) return;
+			const ul = document.createElement('ul');
+
+			const addLi = (label, val) => {
+				if(val) {
+					const li = document.createElement('li');
+					li.innerHTML = `<strong>${label}:</strong> ${val}`;
+					ul.appendChild(li);
+				}
+			};
+
+			addLi('Where', card.dataset.location);
+			addLi('Habitat', card.dataset.habitat);
+			addLi('Diet', card.dataset.food);
+			if(card.dataset.features) {
+				addLi('Features', card.dataset.features);
+			}
+
+			meta.textContent = '';
+			meta.appendChild(ul);
+		});
+	</script>
+</body>
+</html>
+
