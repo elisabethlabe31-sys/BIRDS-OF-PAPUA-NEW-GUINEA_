@@ -5,6 +5,23 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<title>Birds of Papua New Guinea</title>
 	<style>
+		.species {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns = landscape */
+  gap: 16px;
+}
+
+@media(max-width:900px){
+  .species {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media(max-width:600px){
+  .species {
+    grid-template-columns: 1fr;
+  }
+}
 		:root{--bg:#f7fafc;--card:#ffffff;--accent:#eb8c3e;--muted:#55606a}
 		body{font-family: system-ui,Segoe UI,Roboto,Helvetica,Arial, sans-serif;line-height:1.6;background:var(--bg);color:#000000;margin:0;padding:24px}
 		.container{max-width:1100px;margin:0 auto}
