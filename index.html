@@ -5,7 +5,9 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<title>Birds of Papua New Guinea</title>
 	<style>
-		.species {
+		.species-item {
+  display: block;
+}
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* 3 columns = landscape */
   gap: 16px;
@@ -22,7 +24,12 @@
     grid-template-columns: 1fr;
   }
 }
-		.species-item {
+		.species-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+}
   display: flex;
   gap: 12px;
   align-items: flex-start;
@@ -97,6 +104,10 @@
 
 		<section id="species-section">
 			<h2>Species & Where to Find Them (alphabetical)</h2>
+			<div style="display:flex; gap:10px; margin-bottom:10px;">
+          <button onclick="prevPage()">⬅ Previous</button>
+          <button onclick="nextPage()">Next ➡</button>
+               </div>
 			<div class="species" id="species-list">
 				<div class="species-item" data-name="Australasian Figbird" data-image="images/figbird.jpg" data-location="Widespread throughout PNG lowland forests, mangroves and even suburban gardens from sea level up to 1000 m" data-habitat="Prefers forest edges, parks and fruiting trees in open wooded habitats" data-food="Feeds mainly on figs and other soft fruits; will also glean insects from foliage and take nectar occasionally" data-status="Least Concern" data-features="Medium-sized passerine with olive‑green back, grey head, and a noticeable crest on males">
 					<strong>Australasian Figbird (Sphecotheres vieilloti)</strong><span class="status">Least Concern</span>
@@ -474,6 +485,36 @@
 			meta.textContent = '';
 			meta.appendChild(ul);
 		});
+	let currentPage = 0;
+const itemsPerPage = 3;
+const allBirds = document.querySelectorAll('.species-item');
+
+function showPage(page) {
+  currentPage = page;
+  
+  allBirds.forEach((bird, index) => {
+    if (index >= page * itemsPerPage && index < (page + 1) * itemsPerPage) {
+      bird.style.display = "block";
+    } else {
+      bird.style.display = "none";
+    }
+  });
+}
+
+function nextPage() {
+  if ((currentPage + 1) * itemsPerPage < allBirds.length) {
+    showPage(currentPage + 1);
+  }
+}
+
+function prevPage() {
+  if (currentPage > 0) {
+    showPage(currentPage - 1);
+  }
+}
+
+// show first 3 birds when page loads
+showPage(0);
 	</script>
 </body>
 </html>
