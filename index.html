@@ -44,22 +44,11 @@
   z-index: 0;
 }
 
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-
-  background-image: 
-    url('images/figbird_art_1_big.jpg'),
-    url('images/Black Sicklebill (Epimachus fastuosus).jpeg'),
-    url('images/Blue-eyed Cockatoo (Cacatua ophthalmica).jpg'),
-    url('images/Greater Bird-of-Paradise (Paradisaea apoda).jpg');
-
-  background-size: 300px;
-  background-repeat: repeat;
+body{
+  font-family: system-ui,Segoe UI,Roboto,Helvetica,Arial, sans-serif;
+  line-height:1.6;
+  background:var(--bg);
+}
 
   filter: blur(6px) brightness(0.6);
   z-index: -1;
