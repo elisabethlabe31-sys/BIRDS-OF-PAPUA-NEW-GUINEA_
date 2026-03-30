@@ -52,8 +52,21 @@ body{
   filter: blur(6px) brightness(0.6);
   z-index: -1;
 }color:#000000;margin:0;padding:24px}
-		.container{max-width:1100px;margin:0 auto}
-		header{display:flex;flex-direction:column;gap:8px;margin-bottom:12px;padding:30px 24px;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;background-image:url('./Golden Monarch (Carterornis chrysomela).jfif');background-size:cover;background-position:center;background-repeat:no-repeat;}
+		.container {
+  max-width: 900px;   /* ↓ smaller = tighter layout */
+  margin: 0 auto;
+  padding: 10px;
+header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 12px;
+  padding: 20px;
+  background-image: url('images/Golden Monarch (Carterornis chrysomela).jfif');
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px;
+}
 		h1{margin:0;font-size:2.5rem;color:#DAA520;font-family:'Georgia',serif;}
 		.intro{color:#DAA520;text-shadow:1px 1px 2px rgba(0,0,0,0.7);}
 		.controls{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
