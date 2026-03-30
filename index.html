@@ -39,7 +39,31 @@
   object-fit: cover;
 }
 		:root{--bg:#f7fafc;--card:#ffffff;--accent:#eb8c3e;--muted:#55606a}
-		body{font-family: system-ui,Segoe UI,Roboto,Helvetica,Arial, sans-serif;line-height:1.6;background:var(--bg);color:#000000;margin:0;padding:24px}
+		body {
+  position: relative;
+  z-index: 0;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background-image: 
+    url('images/figbird_art_1_big.jpg'),
+    url('images/Black Sicklebill (Epimachus fastuosus).jpeg'),
+    url('images/Blue-eyed Cockatoo (Cacatua ophthalmica).jpg'),
+    url('images/Greater Bird-of-Paradise (Paradisaea apoda).jpg');
+
+  background-size: 300px;
+  background-repeat: repeat;
+
+  filter: blur(6px) brightness(0.6);
+  z-index: -1;
+}color:#000000;margin:0;padding:24px}
 		.container{max-width:1100px;margin:0 auto}
 		header{display:flex;flex-direction:column;gap:8px;margin-bottom:12px;padding:30px 24px;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;background-image:url('./Golden Monarch (Carterornis chrysomela).jfif');background-size:cover;background-position:center;background-repeat:no-repeat;}
 		h1{margin:0;font-size:2.5rem;color:#DAA520;font-family:'Georgia',serif;}
